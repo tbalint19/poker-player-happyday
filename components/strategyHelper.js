@@ -1,9 +1,10 @@
 'use strict';
 
 let config = require('../config');
+let _ = require('lodash');
 
 class StrategyHelper {
-  constructor(chenScore, isBigBlind, raiseHappened, numberOfPlayers, minRaise, callAmount, roundNumber, ourStack) {
+  constructor(chenScore, isBigBlind, raiseHappened, numberOfPlayers, minRaise, callAmount, roundNumber, ourStack, ourCards, communityCards) {
     this.chenScore = chenScore;
     this.isBigBlind = isBigBlind;
     this.raiseHappened = raiseHappened;
@@ -12,6 +13,8 @@ class StrategyHelper {
     this.callAmount = callAmount;
     this.roundNumber = roundNumber;
     this.ourStack = ourStack;
+    this.ourCards = ourCards;
+    this.communityCards = communityCards;
   }
 
   calculateTreshold() {
@@ -41,7 +44,12 @@ class StrategyHelper {
       }
       return this.minRaise;
     } else {
-      return (this.ourStack / 100 * 20) + Math.ceil(Math.random() * 500);
+      let randomRatio = 100;
+      if(_.find(this.communityCards, { rank: this.ourCards[0].rank }) ||
+        _.find(this.communityCards, { rank: this.ourCards[1].rank })) {
+        randomRatio += 400;
+      }
+      return (this.ourStack / 100 * 20) + Math.ceil(Math.random() * randomRatio);
     }
   }
 }

@@ -151,7 +151,9 @@ describe('LeanPoker', function() {
         10,  // minRaise,
         20,  // callAmount,
         0,  // roundNumber,
-        1000  // ourStack
+        1000,  // ourStack,
+        GameState.players[1].hole_cards,
+        GameState.community_cards
       );
       let betAmount = helper.calculate();
       expect(betAmount).to.eql(0);
@@ -166,7 +168,28 @@ describe('LeanPoker', function() {
         10,  // minRaise,
         20,  // callAmount,
         1,  // roundNumber,
-        1000  // ourStack
+        1000,  // ourStack
+        GameState.players[1].hole_cards,
+        GameState.community_cards
+      );
+      let betAmount = helper.calculate();
+      expect(true).to.eql((betAmount > 200));
+    });
+
+
+    it('should bet highter then 200', function() {
+      GameState.community_cards[0].rank = 'A';
+      let helper = new StrategyHelper(
+        6,  // chenScore,
+        false,  // isBigBlind,
+        false,  // raiseHappened,
+        4,  // numberOfPlayers,
+        10,  // minRaise,
+        20,  // callAmount,
+        1,  // roundNumber,
+        1000,  // ourStack
+        GameState.players[1].hole_cards,
+        GameState.community_cards
       );
       let betAmount = helper.calculate();
       expect(true).to.eql((betAmount > 200));

@@ -15,7 +15,7 @@ class DataDecorator {
   }
 
   ourIndex() {
-    return this.data["players"].indexOf(ourPlayer);
+    return this.data["players"].indexOf(this.ourPlayer());
   }
 
   activePlayers() {
