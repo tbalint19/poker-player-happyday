@@ -1,3 +1,5 @@
+'use strict';
+
 let ChenHelper = require('./components/chenHelper');
 let BasicHelper = require('./components/basicHelper');
 let _ = require('lodash');

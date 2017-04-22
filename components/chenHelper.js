@@ -1,3 +1,5 @@
+'use strict';
+
 class ChenHelper {
 
   constructor(hand){
@@ -34,4 +36,4 @@ class ChenHelper {
 
 }
 
-module.exports = ChenHelper
+module.exports = ChenHelper;
