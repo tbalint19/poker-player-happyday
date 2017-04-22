@@ -141,16 +141,35 @@ describe('LeanPoker', function() {
 
   });
 
-  describe('strategy', function() {
-    it('should XXX', function() {
-      let data = GameState;
-
+  describe.only('strategy', function() {
+    it('should bet 20', function() {
       let helper = new StrategyHelper(
-
-
+        6,  // chenScore,
+        false,  // isBigBlind,
+        false,  // raiseHappened,
+        4,  // numberOfPlayers,
+        10,  // minRaise,
+        20,  // callAmount,
+        0,  // roundNumber,
+        1000  // ourStack
       );
       let betAmount = helper.calculate();
+      expect(betAmount).to.eql(0);
+    });
 
+    it('should bet highter then 200', function() {
+      let helper = new StrategyHelper(
+        6,  // chenScore,
+        false,  // isBigBlind,
+        false,  // raiseHappened,
+        4,  // numberOfPlayers,
+        10,  // minRaise,
+        20,  // callAmount,
+        1,  // roundNumber,
+        1000  // ourStack
+      );
+      let betAmount = helper.calculate();
+      expect(true).to.eql((betAmount > 200));
     });
 
   });

@@ -23,14 +23,20 @@ class StrategyHelper {
   }
 
   calculate() {
+    let safeLow = 8;
+    let aggrLow = 6;
+    let safeHigh = 10;
+    let aggrHigh = 9;
+    let low = this.numberOfPlayers == 4 ? safeLow : aggrLow;
+    let high = this.numberOfPlayers == 4 ? safeHigh : aggrHigh;
     if(this.roundNumber == 0) {
       if (this.isBigBlind && !this.raiseHappened) {
         return this.minRaise;
       }
-      if (this.chenScore < 6) {
+      if (this.chenScore < low) {
         return 0;
       }
-      if (this.chenScore < 9 && this.callAmount <= (this.ourStack / 100 * 20)) {
+      if (this.chenScore < high && this.callAmount <= (this.ourStack / 100 * 20)) {
         return this.callAmount;
       }
       return this.minRaise;
