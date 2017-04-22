@@ -20,30 +20,30 @@ class Player {
     let data = DataDecorator.create(gameState);
     let ourPlayer = data.ourPlayer();
 
-    try {
-      helper = new ChenHelper(ourPlayer["hole_cards"]);
-      let points = helper.calculatePoints();
-
-      let strategy = new StartegyHelper(
-        points,
-        data.isBigBlind(),
-        data.raiseHappend(),
-        data.numberOfPlayers(),
-        gameState['minimum_raise'],
-        gameState['current_buy_in'],
-        data.roundNumber(),
-        data.ourStack(),
-        ourPlayer["hole_cards"],
-        gameState['community_cards']
-      );
-      betAmount = strategy.calculate();
-
-      return betAmount
-    } catch (e){
+    // try {
+    //   helper = new ChenHelper(ourPlayer["hole_cards"]);
+    //   let points = helper.calculatePoints();
+    //
+    //   let strategy = new StartegyHelper(
+    //     points,
+    //     data.isBigBlind(),
+    //     data.raiseHappend(),
+    //     data.numberOfPlayers(),
+    //     gameState['minimum_raise'],
+    //     gameState['current_buy_in'],
+    //     data.roundNumber(),
+    //     data.ourStack(),
+    //     ourPlayer["hole_cards"],
+    //     gameState['community_cards']
+    //   );
+    //   betAmount = strategy.calculate();
+    //
+    //   return betAmount
+    // } catch (e){
       helper = new BasicHelper(ourPlayer["hole_cards"]);
       betAmount = helper.calculate();
       bet(betAmount);
-    }
+    // }
   }
 
   static showdown(gameState) {
