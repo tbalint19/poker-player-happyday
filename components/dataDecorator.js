@@ -10,12 +10,13 @@ class DataDecorator {
     this.data = data;
   }
 
-  ourPlayer() {
-    return this.data["players"].filter((player) => player.name == "happyDay")[0];
+  ourPlayer(){
+    let player = this.data["players"].filter((player) => player.name == "happyDay")[0];
+    return player;
   }
 
   ourIndex() {
-    return this.data["players"].indexOf(ourPlayer);
+    return this.data["players"].indexOf(this.ourPlayer);
   }
 
   activePlayers() {
@@ -23,7 +24,7 @@ class DataDecorator {
   }
 
   numberOfPlayers() {
-    return this.activePlayers().length();
+    return this.activePlayers().length;
   }
 
   isBigBlind() {
@@ -35,7 +36,7 @@ class DataDecorator {
   }
 
   roundNumber() {
-    switch(this.data["community_cards"].length()) {
+    switch(this.data["community_cards"].length) {
       case 0: return 0;
       case 3: return 1;
       case 4: return 2;

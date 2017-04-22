@@ -1,5 +1,7 @@
 'use strict';
 
+// let demoState = require('./demoState');
+
 let _ = require('lodash');
 let DataDecorator = require('./components/dataDecorator');
 let ChenHelper = require('./components/chenHelper');
@@ -34,7 +36,7 @@ class Player {
       );
       betAmount = strategy.calculate();
 
-      bet(betAmount);
+      return betAmount
     } catch (e){
       helper = new BasicHelper(ourPlayer["hole_cards"]);
       betAmount = helper.calculate();
@@ -45,5 +47,9 @@ class Player {
   static showdown(gameState) {
   }
 }
+//
+// let x = new Player();
+// let result = Player.betRequest(demoState, 0);
+// console.log(result);
 
 module.exports = Player;
