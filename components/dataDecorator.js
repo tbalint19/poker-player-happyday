@@ -1,4 +1,5 @@
 'use strict';
+let Logger = require('./logger');
 
 class DataDecorator {
 
@@ -10,42 +11,58 @@ class DataDecorator {
     this.data = data;
   }
 
-  ourPlayer(){
-    let player = this.data["players"].filter((player) => player.name == "happyDay")[0];
-    return player;
+  ourPlayer() {
+    let result = this.data["players"].filter((player) => player.name == "happyDay")[0];
+    Logger.log('DATADECORATOR ourPlayer', result);
+    return result;
   }
 
   ourIndex() {
-    return this.data["players"].indexOf(this.ourPlayer());
+    let result = this.data["players"].indexOf(this.ourPlayer());
+    Logger.log('DATADECORATOR ourIndex', result);
+    return result;
   }
 
   activePlayers() {
-    return this.data["players"].filter((player) => player.status == "active" || player.status == "folded");
+    let result = this.data["players"].filter((player) => player.status == "active" || player.status == "folded");
+    Logger.log('DATADECORATOR activePlayers', result);
+    return result;
   }
 
   numberOfPlayers() {
-    return this.activePlayers().length;
+    let result = this.activePlayers().length;
+    Logger.log('DATADECORATOR numberOfPlayers', result);
+    return result;
   }
 
   isBigBlind() {
-    return ((this.data['dealer'] + 1) % this.numberOfPlayers()) + 1 == this.ourIndex();
+    let result = ((this.data['dealer'] + 1) % this.numberOfPlayers()) + 1 == this.ourIndex();
+    Logger.log('DATADECORATOR isBigBlind', result);
+    return result;
   }
 
   raiseHappend() {
-    return this.data["current_buy_in"] > (this.data["small_blind"] * 2);
+    let result = this.data["current_buy_in"] > (this.data["small_blind"] * 2);
+    Logger.log('DATADECORATOR raiseHappend', result);
+    return result;
   }
 
   roundNumber() {
+    let result;
     switch(this.data["community_cards"].length) {
-      case 0: return 0;
-      case 3: return 1;
-      case 4: return 2;
-      case 5: return 3;
+      case 0: result = 0;
+      case 3: result = 1;
+      case 4: result = 2;
+      case 5: result = 3;
+      default: result = 0;
     }
+    Logger.log('DATADECORATOR roundNumber', result);
+    return result;
   }
 
   ourStack() {
-    return this.ourPlayer()['stack'];
+    let result = this.ourPlayer()['stack'];
+    Logger.log('DATADECORATOR ourStack', result);
   }
 
 }

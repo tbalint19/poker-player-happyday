@@ -17,7 +17,7 @@ let BasicHelper = require('../components/basicHelper');
 let StrategyHelper = require('../components/strategyHelper');
 
 describe('LeanPoker', function() {
-  describe('player', function() {
+  describe.only('player', function() {
     it('should running', function() {
       try {
         let bet = (bet => true);
@@ -141,7 +141,7 @@ describe('LeanPoker', function() {
 
   });
 
-  describe.only('strategy', function() {
+  describe('strategy', function() {
     it('should bet 20', function() {
       let helper = new StrategyHelper(
         6,  // chenScore,

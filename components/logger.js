@@ -2,12 +2,16 @@
 let appSettings = require('../config');
 
 class Logger {
-  static log(name = '', stack = undefined) {
+  static log(name = '', stack = '') {
     if(appSettings.useLog) {
       if(name == '') {
         console.log('=====');
       } else {
-        console.log(name, stack);
+        if(stack === '') {
+          console.log(name);
+        } else {
+          console.log(name, stack);
+        }
       }
     }
   }

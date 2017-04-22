@@ -2,6 +2,7 @@
 
 let config = require('../config');
 let _ = require('lodash');
+let Logger = require('./logger');
 
 class StrategyHelper {
   constructor(chenScore, isBigBlind, raiseHappened, numberOfPlayers, minRaise, callAmount, roundNumber, ourStack, ourCards, communityCards) {
@@ -15,6 +16,8 @@ class StrategyHelper {
     this.ourStack = ourStack;
     this.ourCards = ourCards;
     this.communityCards = communityCards;
+
+    Logger.log('STRAT construct');
   }
 
   calculateTreshold() {
@@ -32,6 +35,8 @@ class StrategyHelper {
     let aggrHigh = 9;
     let low = this.numberOfPlayers == 4 ? safeLow : aggrLow;
     let high = this.numberOfPlayers == 4 ? safeHigh : aggrHigh;
+    Logger.log('STRAT low', low);
+    Logger.log('STRAT high', high);
     if(this.roundNumber == 0) {
       if (this.isBigBlind && !this.raiseHappened) {
         return this.minRaise;
@@ -42,6 +47,8 @@ class StrategyHelper {
       if (this.chenScore < high && this.callAmount <= (this.ourStack / 100 * 20)) {
         return this.callAmount;
       }
+
+      Logger.log('STRAT last raise', this.minRaise);
       return this.minRaise;
     } else {
       let randomRatio = 100;
@@ -49,6 +56,7 @@ class StrategyHelper {
         _.find(this.communityCards, { rank: this.ourCards[1].rank })) {
         randomRatio += 400;
       }
+      Logger.log('STRAT next round');
       return (this.ourStack / 100 * 20) + Math.ceil(Math.random() * randomRatio);
     }
   }
