@@ -32,7 +32,9 @@ class Player {
         gameState['minimum_raise'],
         gameState['current_buy_in'],
         data.roundNumber(),
-        data.ourStack()
+        data.ourStack(),
+        ourPlayer["hole_cards"],
+        gameState['community_cards']
       );
       betAmount = strategy.calculate();
 
@@ -47,7 +49,7 @@ class Player {
   static showdown(gameState) {
   }
 }
-//
+
 // let x = new Player();
 // let result = Player.betRequest(demoState, 0);
 // console.log(result);
