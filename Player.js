@@ -5,8 +5,8 @@ class Player {
 
   static betRequest(gameState, bet) {
     try {
-      let data = JSON.parse(gameState);
-      let ourPlayer = data["players"].filter((player) => player.name == "happyDay");
+      let data = gameState;
+      let ourPlayer = data["players"].filter((player) => player.name == "happyDay")[0];
       let ourHand = ourPlayer["hole_cards"];
       let firstRank = ourHand[0]["rank"];
       let secondRank = ourHand[1]["rank"];
