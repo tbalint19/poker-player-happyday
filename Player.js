@@ -16,7 +16,8 @@ class Player {
     let betAmount;
     try {
       helper = new ChenHelper(ourPlayer["hole_cards"]);
-      betAmount = helper.calculate();
+      let points = helper.calculatePoints();
+      betAmount = points < 8 ? 0 : 5000;
       bet(betAmount);
     } catch (e){
       helper = new BasicHelper(ourPlayer["hole_cards"]);
