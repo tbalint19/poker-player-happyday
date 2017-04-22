@@ -46,7 +46,7 @@ describe('LeanPoker', function() {
       bet.should.have.been.calledWith(1000);
     });
 
-    it('should K7 bet: 0', function() {
+    it.only('should K7 bet: 0', function() {
       GameState.players[1].hole_cards[0].rank = 'K';
       GameState.players[1].hole_cards[1].rank = '7';
       GameState.players[1].hole_cards[0].suit = 'hearts';

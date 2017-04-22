@@ -3,24 +3,32 @@
 class ChenHelper {
 
   constructor(hand){
+    // console.log('hand', hand);
+    // console.log();
     this.firstRank = hand[0]["rank"];
-    this.secondRank = hand[0]["rank"];
-    this.firstSuit = hand[1]["suit"];
+    this.secondRank = hand[1]["rank"];
+    this.firstSuit = hand[0]["suit"];
     this.secondSuit = hand[1]["suit"];
     this.firstValue = this.firstRank == "A" ?
       10 : this.firstRank == "K" ?
         8 : this.firstRank == "Q" ?
           7 : this.firstRank == "J" ?
             6 : parseInt(this.firstRank)/2;
+
+    // console.log('first:', this.firstValue);
     this.secondValue = this.secondRank == "A" ?
       10 : this.secondRank == "K" ?
         8 : this.secondRank == "Q" ?
           7 : this.secondRank == "J" ?
             6 : parseInt(this.secondRank)/2;
+
+    // console.log('sec:', this.secondValue);
+    // console.log();
   }
 
   calculatePoints(){
     let betAmount = this.getScoreForHighest();
+    // console.log('based max', betAmount);
     betAmount = this.firstRank == this.secondRank ? betAmount * 2 : betAmount;
     betAmount = this.firstSuit == this.secondSuit ? betAmount + 2 : betAmount;
     let gap = Math.abs(this.firstValue - this.secondValue);
@@ -39,7 +47,7 @@ class ChenHelper {
 
   calculate(){
     let points = this.calculatePoints()
-    console.log(points);
+    // console.log(points);
     return points < 9 ? 0 : 1000;
   }
 
