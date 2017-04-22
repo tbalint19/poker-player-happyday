@@ -23,9 +23,9 @@ class StrategyHelper {
   }
 
   calculate() {
-    let safeLow = 8;
-    let aggrLow = 6;
-    let safeHigh = 10;
+    let safeLow = 9;
+    let aggrLow = 7;
+    let safeHigh = 11;
     let aggrHigh = 9;
     let low = this.numberOfPlayers == 4 ? safeLow : aggrLow;
     let high = this.numberOfPlayers == 4 ? safeHigh : aggrHigh;
