@@ -23,16 +23,20 @@ class StrategyHelper {
   }
 
   calculate() {
-    if(this.roundNumber == 0 && this.isBigBlind && !this.raiseHappened) {
+    if(this.roundNumber == 0) {
+      if (this.isBigBlind && !this.raiseHappened) {
+        return this.minRaise;
+      }
+      if (this.chenScore < 6) {
+        return 0;
+      }
+      if (this.chenScore < 9 && this.callAmount <= (this.ourStack / 100 * 20)) {
+        return this.callAmount;
+      }
       return this.minRaise;
+    } else {
+      return (this.ourStack / 100 * 20) + Math.ceil(Math.random() * 500);
     }
-    if(this.chenScore < 6) {
-      return 0;
-    }
-    if(this.chenScore < 9 && this.callAmount <= (this.ourStack / 100 * 20)) {
-      return this.callAmount;
-    }
-    return this.minRaise;
   }
 }
 
