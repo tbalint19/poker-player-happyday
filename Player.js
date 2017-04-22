@@ -14,15 +14,15 @@ class Player {
     let ourPlayer = data["players"].filter((player) => player.name == "happyDay")[0];
     let helper;
     let betAmount;
-    try {
-      helper = new ChenHelper(ourPlayer["hole_cards"]);
-      betAmount = helper.calculate()
-      bet(betAmount);
-    } catch (e){
+    // try {
+    //   helper = new ChenHelper(ourPlayer["hole_cards"]);
+    //   betAmount = helper.calculate()
+    //   bet(betAmount);
+    // } catch (e){
       helper = new BasicHelper(ourPlayer["hole_cards"]);
       betAmount = helper.calculate()
       bet(betAmount);
-    }
+    // }
   }
 
   static showdown(gameState) {
