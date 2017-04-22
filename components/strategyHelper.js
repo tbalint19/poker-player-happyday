@@ -3,7 +3,7 @@
 let config = require('../config');
 
 class StrategyHelper {
-  constructor(chenScore, isBigBlind, raiseHappened, numberOfPlayers, minRaise, callAmount, roundNumber) {
+  constructor(chenScore, isBigBlind, raiseHappened, numberOfPlayers, minRaise, callAmount, roundNumber, ourStack) {
     this.chenScore = chenScore;
     this.isBigBlind = isBigBlind;
     this.raiseHappened = raiseHappened;
@@ -11,6 +11,7 @@ class StrategyHelper {
     this.minRaise = minRaise;
     this.callAmount = callAmount;
     this.roundNumber = roundNumber;
+    this.ourStack = ourStack;
   }
 
   calculateTreshold() {
@@ -28,7 +29,7 @@ class StrategyHelper {
     if(this.chenScore < 6) {
       return 0;
     }
-    if(this.chenScore < 9 && this.callAmount <= 200) {
+    if(this.chenScore < 9 && this.callAmount <= (this.ourStack / 100 * 20)) {
       return this.callAmount;
     }
     return this.minRaise;

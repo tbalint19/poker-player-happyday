@@ -43,6 +43,10 @@ class DataDecorator {
     }
   }
 
+  ourStack() {
+    return this.ourPlayer()['stack'];
+  }
+
 }
 
 module.exports = DataDecorator;
