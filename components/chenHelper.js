@@ -7,8 +7,16 @@ class ChenHelper {
     this.secondRank = hand[0]["rank"];
     this.firstSuit = hand[1]["suit"];
     this.secondSuit = hand[1]["suit"];
-    this.firstValue = this.firstRank == "A" ? 10 : this.firstRank == "K" ? 8 : this.firstRank == "Q" ? 7 : this.firstRank == "J" ? 6 : parseInt(this.firstRank)/2;
-    this.secondValue = this.secondRank == "A" ? 10 : this.secondRank == "K" ? 8 : this.secondRank == "Q" ? 7 : this.secondRank == "J" ? 6 : parseInt(this.secondRank)/2;
+    this.firstValue = this.firstRank == "A" ?
+      10 : this.firstRank == "K" ?
+        8 : this.firstRank == "Q" ?
+          7 : this.firstRank == "J" ?
+            6 : parseInt(this.firstRank)/2;
+    this.secondValue = this.secondRank == "A" ?
+      10 : this.secondRank == "K" ?
+        8 : this.secondRank == "Q" ?
+          7 : this.secondRank == "J" ?
+            6 : parseInt(this.secondRank)/2;
   }
 
   calculatePoints(){
@@ -21,7 +29,7 @@ class ChenHelper {
       betAmount - 1 : gap == 2 ?
       betAmount - 2 : gap == 3 ?
       betAmount - 4 : betAmount - 5;
-    betAmount = gap < 2 && firstValue < 7 && secondValue < 7 ? betAmount + 1 : betAmount;
+    betAmount = gap < 2 && this.firstValue < 7 && this.secondValue < 7 ? betAmount + 1 : betAmount;
     return Math.ceil(betAmount)
   }
 
@@ -31,6 +39,7 @@ class ChenHelper {
 
   calculate(){
     let points = this.calculatePoints()
+    console.log(points);
     return points < 9 ? 0 : 1000;
   }
 
