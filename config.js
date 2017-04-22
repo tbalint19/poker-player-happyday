@@ -1,6 +1,6 @@
 'use strict';
 
 module.exports = {
-  useLog: true,
+  useLog: false,
   chenMinimalPoint: 8
 };
