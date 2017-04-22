@@ -4,7 +4,11 @@ let appSettings = require('../config');
 class Logger {
   static log(name = '', stack = undefined) {
     if(appSettings.useLog) {
-      console.log(name, stack);
+      if(name == '') {
+        console.log('=====');
+      } else {
+        console.log(name, stack);
+      }
     }
   }
 }

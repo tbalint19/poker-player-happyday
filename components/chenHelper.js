@@ -22,7 +22,7 @@ class ChenHelper {
 
   constructor(hand){
     Logger.log('hand', hand);
-    Logger.log();
+    Logger.log('');
     this.firstRank = hand[0]["rank"];
     this.secondRank = hand[1]["rank"];
     this.firstSuit = hand[0]["suit"];
@@ -63,7 +63,7 @@ class ChenHelper {
       betAmount - 2 : gap == 3 ?
       betAmount - 4 : betAmount - 5;
 
-    Logger.log('BET', betAmount);
+    Logger.log('betAmount', betAmount);
     Logger.log('gap', gap);
     Logger.log('this.firstValue', this.firstValue);
     Logger.log('this.secondValue', this.secondValue);

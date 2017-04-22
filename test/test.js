@@ -26,7 +26,7 @@ describe('LeanPoker', function() {
       }
     });
 
-    it('should 66 bet: 0', function() {
+    it.skip('should 66 bet: 0', function() {
       GameState.players[1].hole_cards[0].rank = '6';
       GameState.players[1].hole_cards[1].rank = '6';
       GameState.players[1].hole_cards[0].suit = 'hearts';
@@ -36,7 +36,7 @@ describe('LeanPoker', function() {
       bet.should.have.been.calledWith(0);
     });
 
-    it('should AJ bet: 1000', function() {
+    it.skip('should AJ bet: 1000', function() {
       GameState.players[1].hole_cards[0].rank = 'A';
       GameState.players[1].hole_cards[1].rank = 'J';
       GameState.players[1].hole_cards[0].suit = 'hearts';
@@ -46,7 +46,7 @@ describe('LeanPoker', function() {
       bet.should.have.been.calledWith(0);
     });
 
-    it('should K7 bet: 0', function() {
+    it.skip('should K7 bet: 0', function() {
       GameState.players[1].hole_cards[0].rank = 'K';
       GameState.players[1].hole_cards[1].rank = '7';
       GameState.players[1].hole_cards[0].suit = 'hearts';
