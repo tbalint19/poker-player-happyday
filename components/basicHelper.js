@@ -12,7 +12,7 @@ class basicHelper {
     let hrs = this.highRanks;
     let first = this.firstRank;
     let second = this.secondRank;
-    return first == second ? 1000 : hrs.includes(first) && hrs.includes(second) ? 1000 : 0;
+    return first == second ? 1000 : hrs.includes(first) && hrs.includes(second) ? 5000 : 0;
   }
 
 }

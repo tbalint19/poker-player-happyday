@@ -34,6 +34,15 @@ class DataDecorator {
     return this.data["current_buy_in"] > (this.data["small_blind"] * 2);
   }
 
+  roundNumber() {
+    switch(this.data["community_cards"].length()) {
+      case 0: return 0;
+      case 3: return 1;
+      case 4: return 2;
+      case 5: return 3;
+    }
+  }
+
 }
 
 module.exports = DataDecorator;

@@ -14,6 +14,7 @@ let GameState = require('./gamestate.json');
 let Player = require('../Player');
 let ChenHelper = require('../components/chenHelper');
 let BasicHelper = require('../components/basicHelper');
+let StrategyHelper = require('../components/strategyHelper');
 
 describe('LeanPoker', function() {
   describe('player', function() {
@@ -136,6 +137,20 @@ describe('LeanPoker', function() {
       let helper = new ChenHelper(ourPlayer["hole_cards"]);
       let betAmount = helper.calculatePoints();
       expect(betAmount).to.eql(20);
+    });
+
+  });
+
+  describe('strategy', function() {
+    it('should XXX', function() {
+      let data = GameState;
+
+      let helper = new StrategyHelper(
+
+
+      );
+      let betAmount = helper.calculate();
+
     });
 
   });
