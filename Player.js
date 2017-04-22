@@ -1,21 +1,25 @@
+let ChenHelper = require('./components/chenHelper');
+let BasicHelper = require('./components/basicHelper');
+let _ = require('lodash');
+
 class Player {
   static get VERSION() {
     return '0.1';
   }
 
   static betRequest(gameState, bet) {
+    let data = gameState;
+    let ourPlayer = data["players"].filter((player) => player.name == "happyDay")[0];
+    let helper;
+    let betAmount;
     try {
-      let data = gameState;
-      let ourPlayer = data["players"].filter((player) => player.name == "happyDay")[0];
-      let ourHand = ourPlayer["hole_cards"];
-      let firstRank = ourHand[0]["rank"];
-      let secondRank = ourHand[1]["rank"];
-      let highRanks = ["A", "K", "Q", "J", "10"];
-      let betAmount = firstRank == secondRank ? 1000 : highRanks.includes(firstRank) && highRanks.includes(secondRank) ? 1000 : 0;
+      helper = new ChenHelper(ourPlayer["hole_cards"]);
+      betAmount = helper.calculate()
       bet(betAmount);
     } catch (e){
-      console.log("error happened", e);
-      bet(1000);
+      helper = new BasicHelper(ourPlayer["hole_cards"]);
+      betAmount = helper.calculate()
+      bet(betAmount);
     }
   }
 
