@@ -1,5 +1,7 @@
 'use strict';
 
+let Logger = require('./logger');
+
 const cardlist = {
   '2': 0,
   '3': 1,
@@ -19,8 +21,8 @@ const cardlist = {
 class ChenHelper {
 
   constructor(hand){
-    console.log('hand', hand);
-    console.log();
+    Logger.log('hand', hand);
+    Logger.log();
     this.firstRank = hand[0]["rank"];
     this.secondRank = hand[1]["rank"];
     this.firstSuit = hand[0]["suit"];
@@ -31,20 +33,20 @@ class ChenHelper {
           7 : this.firstRank == "J" ?
             6 : parseInt(this.firstRank)/2;
 
-    console.log('first:', this.firstValue);
+    Logger.log('first:', this.firstValue);
     this.secondValue = this.secondRank == "A" ?
       10 : this.secondRank == "K" ?
         8 : this.secondRank == "Q" ?
           7 : this.secondRank == "J" ?
             6 : parseInt(this.secondRank)/2;
 
-    console.log('sec:', this.secondValue);
-    console.log();
+    Logger.log('sec:', this.secondValue);
+    Logger.log();
   }
 
   calculatePoints(){
     let betAmount = this.getScoreForHighest();
-    console.log('based max', betAmount);
+    Logger.log('based max', betAmount);
     betAmount = this.firstRank == this.secondRank ? betAmount * 2 : betAmount;
     betAmount = this.firstSuit == this.secondSuit ? betAmount + 2 : betAmount;
     let gapFirst = cardlist[this.firstRank];
@@ -61,12 +63,12 @@ class ChenHelper {
       betAmount - 2 : gap == 3 ?
       betAmount - 4 : betAmount - 5;
 
-    console.log('BET', betAmount);
-    console.log('gap', gap);
-    console.log('this.firstValue', this.firstValue);
-    console.log('this.secondValue', this.secondValue);
+    Logger.log('BET', betAmount);
+    Logger.log('gap', gap);
+    Logger.log('this.firstValue', this.firstValue);
+    Logger.log('this.secondValue', this.secondValue);
     betAmount = gap < 2 && this.firstValue < 7 && this.secondValue < 7 && this.firstValue !== this.secondValue ? betAmount + 1 : betAmount;
-    console.log('BETU', betAmount);
+    Logger.log('BETU', betAmount);
     return Math.ceil(betAmount)
   }
 
@@ -76,7 +78,7 @@ class ChenHelper {
 
   calculate(){
     let points = this.calculatePoints()
-    console.log(points);
+    Logger.log(points);
     return points < 9 ? 0 : 1000;
   }
 
